@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--color-pp-bg)", fontFamily: "var(--font-nunito), Nunito, sans-serif" }}>
@@ -109,16 +111,18 @@ export default function Home() {
           />
 
           {/* Steunsom modus */}
-          <ModeCard
-            emoji="💡"
-            accentColor="#e8820c"
-            accentLight="#fff0dc"
-            title="Steunsom modus"
-            subtitle="Gebruik een truc"
-            description="Gebruik een som die je al kent om een moeilijkere som op te lossen."
-            buttonLabel="Beginnen"
-            number="2"
-          />
+          <Link href="/steunsom" style={{ textDecoration: "none" }}>
+            <ModeCard
+              emoji="💡"
+              accentColor="#e8820c"
+              accentLight="#fff0dc"
+              title="Steunsom modus"
+              subtitle="Gebruik een truc"
+              description="Gebruik een som die je al kent om een moeilijkere som op te lossen."
+              buttonLabel="Beginnen"
+              number="2"
+            />
+          </Link>
 
           {/* Oefen modus */}
           <ModeCard
