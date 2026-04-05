@@ -27,33 +27,42 @@ UX requirements:
 
 ## Three learning modes
 
-### 1. Toon modus (show answers)
+### 1. Toon modus (show answers) *(not yet implemented)*
 Display multiplication sums together with their answers. Passive mode for reference/demonstration.
 
-### 2. Steunsom modus (anchor strategy)
-Show a multiplication sum. Together with the child, identify a **steunsom** — a nearby multiplication the child already knows — and use it to derive the answer.
+### 2. Steunsom modus (`/steunsom`)
+Shows a randomly generated multiplication sum with a "Volgende som →" button. The child works out the answer using an anchor strategy. No hints or help panel on the page.
 
-Example: for `7 × 8`:
-- Steunsom: `5 × 8 = 40` (known)
-- Then add: `2 × 8 = 16`
-- Result: `40 + 16 = 56`
-
-The child enters the steunsom themselves, then calculates the final answer.
-
-### 3. Oefen modus (practice)
+### 3. Oefen modus (practice) *(not yet implemented)*
 The child solves the multiplication directly, no hints.
 
 ## ElevenLabs voice integration
 
-The app will integrate with the **ElevenLabs API** to provide a voice agent that guides children verbally through exercises. This is not yet implemented.
+`POST /api/speak` (`src/app/api/speak/route.ts`) proxies text to ElevenLabs TTS and returns `audio/mpeg`. Available for use by any page that needs spoken feedback.
+
+Required env var: `ELEVENLABS_API_KEY` in `.env`. Optional: `ELEVENLABS_VOICE_ID` (defaults to Rachel, `21m00Tcm4TlvDq8ikWAM`). Model: `eleven_multilingual_v2`.
+
+Usage from a client component:
+```ts
+const res = await fetch("/api/speak", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ text: "Hallo!" }),
+});
+const blob = await res.blob();
+const audio = new Audio(URL.createObjectURL(blob));
+audio.play();
+```
 
 ## Architecture
 
 App Router structure under `src/app/`:
 
 - `src/app/layout.tsx` — root layout with Geist font variables and global CSS
-- `src/app/page.tsx` — home page (entry point)
+- `src/app/page.tsx` — home page (mode selection)
 - `src/app/globals.css` — global styles (Tailwind CSS v4)
+- `src/app/steunsom/page.tsx` — steunsom modus (som + volgende knop)
+- `src/app/api/speak/route.ts` — ElevenLabs TTS proxy
 
 **Stack:** Next.js 16, React 19, TypeScript, Tailwind CSS v4, ESLint 9.
 
