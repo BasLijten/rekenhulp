@@ -14,7 +14,7 @@ export default function SteunsomPage() {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--color-pp-bg)" }}>
-
+      {/* background #fffbe6 */}
       {/* Header */}
       <header style={{ background: "var(--color-pp-blue)", boxShadow: "0 4px 12px rgba(26,79,156,0.3)" }}>
         <div className="max-w-3xl mx-auto px-6 flex items-center justify-between" style={{ minHeight: 72 }}>
