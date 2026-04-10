@@ -40,7 +40,7 @@ The child solves the multiplication directly, no hints.
 
 `POST /api/speak` (`src/app/api/speak/route.ts`) proxies text to ElevenLabs TTS and returns `audio/mpeg`. Available for use by any page that needs spoken feedback.
 
-Required env var: `ELEVENLABS_API_KEY` in `.env`. Optional: `ELEVENLABS_VOICE_ID` (defaults to Rachel, `21m00Tcm4TlvDq8ikWAM`). Model: `eleven_multilingual_v2`.
+Required env var: `ELEVENLABS_API_KEY` in `.env`. Optional: `ELEVENLABS_VOICE_ID` (defaults to Rachel, `21m00Tcm4TlvDq8ikWAM`). Model: `eleven_flash_v2_5`.
 
 Usage from a client component:
 ```ts
